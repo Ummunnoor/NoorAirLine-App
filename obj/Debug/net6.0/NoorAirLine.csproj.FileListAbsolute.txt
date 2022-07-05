@@ -1,0 +1,15 @@
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\obj\Debug\net6.0\NoorAirLine.csproj.AssemblyReference.cache
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\obj\Debug\net6.0\NoorAirLine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\obj\Debug\net6.0\NoorAirLine.AssemblyInfoInputs.cache
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\obj\Debug\net6.0\NoorAirLine.AssemblyInfo.cs
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\obj\Debug\net6.0\NoorAirLine.csproj.CoreCompileInputs.cache
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\bin\Debug\net6.0\NoorAirLine.exe
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\bin\Debug\net6.0\NoorAirLine.deps.json
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\bin\Debug\net6.0\NoorAirLine.runtimeconfig.json
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\bin\Debug\net6.0\NoorAirLine.dll
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\bin\Debug\net6.0\NoorAirLine.pdb
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\obj\Debug\net6.0\NoorAirLine.dll
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\obj\Debug\net6.0\refint\NoorAirLine.dll
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\obj\Debug\net6.0\NoorAirLine.pdb
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\obj\Debug\net6.0\NoorAirLine.genruntimeconfig.cache
+C:\Users\SAMSUNG\Desktop\wed\NoorAirLine\obj\Debug\net6.0\ref\NoorAirLine.dll

@@ -8,6 +8,7 @@ namespace NoorAirLine.Repositories
         public static int myIndex = 0;
         private static int count = 1;
         public  Passenger[] passengers = new Passenger[40];
+        public static string LoginEmail;
 
         public void Register(string fName, string lName, string email, Gender gender, DateTime dateOfBirth,
          string address, string PhoneNumber,string password, string nextOfKin)
@@ -25,12 +26,13 @@ namespace NoorAirLine.Repositories
             var Passenger = GetPassenger(email);
             if (Passenger != null && Passenger.Password == password)
             {
+                LoginEmail = Passenger.Email;
                 return Passenger;
             }
             return null;
         }
 
-        private Passenger GetPassenger(string email)
+        public Passenger GetPassenger(string email)
         {
             for (int i = 0; i < myIndex;i++)
             {

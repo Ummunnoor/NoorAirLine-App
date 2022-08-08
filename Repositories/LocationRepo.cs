@@ -13,7 +13,7 @@ namespace NoorAirLine.Repositories
         {
             System.Console.WriteLine("Enter Location Name");
             string locationName = Console.ReadLine(); 
-            System.Console.WriteLine("Enter Take oof point Location Name");
+            System.Console.WriteLine("Enter Take off point Location ");
             string takeOffPointLocationName = Console.ReadLine();
             System.Console.WriteLine("Enter Landing point Location Name");
             string landingPointLocationName = Console.ReadLine();

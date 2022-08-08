@@ -8,14 +8,13 @@ namespace NoorAirLine.Menus
     public class PassengerMenu
     {
         PassengerRepo passengerRepo = new PassengerRepo();
+        BookingRepo bookingRepo = new BookingRepo();
         public void Menu()
         {
-            bool exit = false;
-            do
-            {
+           
                 Console.WriteLine("Enter 1 to Register");
                 Console.WriteLine("Enter 2 to Login");
-                Console.WriteLine("Enter 3 to book a flight");
+                
                 Console.WriteLine("Enter 0 to exit");
 
                 int option = int.Parse(Console.ReadLine());
@@ -26,19 +25,17 @@ namespace NoorAirLine.Menus
                         break;
                     case 2:
                         LogIn();
-                        break;
-                    case 3:
-                        BookFlight();
+
                         break;
                     case 0:
-                        exit = true;
+                      MainMenu.Menu();
                         break;
                     default:
                         Console.WriteLine($"Invalid credentials...\nEnter any key to try again");
                         Console.ReadKey();
                         break;
-                }
-            } while (!exit);
+                
+            }
         }
 
         public void Register()
@@ -74,6 +71,7 @@ namespace NoorAirLine.Menus
             string nextOfKin = Console.ReadLine();
             passengerRepo.Register(fName, lName, email, (Gender)gender, dateOfBirth, address,
              phoneNumber, password, nextOfKin);
+             Menu();
         }
         public void LogIn()
         {
@@ -83,7 +81,33 @@ namespace NoorAirLine.Menus
             string password = Console.ReadLine();
             var loginSuccessful = passengerRepo.Login(email, password);
 
-            Console.WriteLine(loginSuccessful != null ? "Login Successful" : "Invalid Credentials");
+            
+            if (loginSuccessful == null )
+            {
+                Console.WriteLine("Invalid Credentials");
+                 LogIn();
+            }
+            else
+            {
+                Console.WriteLine("Successfully logged in ...");
+                Console.WriteLine("Enter 1 to book a flight in");
+                Console.WriteLine("Enter 0 to exit");
+                int option = int.Parse(Console.ReadLine());
+                switch(option)
+                {
+                    case 1:
+                    bookingRepo.BookFlight(email);
+                    break;
+                    case 0:
+                    MainMenu.Menu();
+                    break;
+                    default:
+                    Console.WriteLine("Invalid input;try again next time");
+                    break;
+
+                }
+            }
+            
         }
 
 
@@ -110,9 +134,6 @@ namespace NoorAirLine.Menus
 
             }
         }
-        public void BookFlight()
-        {
-
-        }
+        
     }
 }

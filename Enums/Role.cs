@@ -3,7 +3,7 @@ namespace NoorAirLine.Enums
 {
     public enum Role
     {
-        pilot = 1,
+        pilots = 1,
         AirHostess,
         
         Admin,

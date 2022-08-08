@@ -16,6 +16,10 @@ namespace NoorAirLine.Models
         public string Address { get; set; }
         public DateTime DateOfBirth { get; set; }
 
+        public Person()
+        {
+            
+        }
         public Person(int id, string firstName, string lastName, string email, string phoneNumber,
         string password, string nextOfKin, Gender gender, string address, DateTime dateOfBirth)
         {

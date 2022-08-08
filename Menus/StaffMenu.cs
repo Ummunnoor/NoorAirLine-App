@@ -2,7 +2,7 @@ using System;
 using NoorAirLine.Enums;
 using NoorAirLine.Models;
 using NoorAirLine.Repositories;
-using NoorAirLine.Repositories;
+
 
 namespace NoorAirLine.Menus
 {
@@ -35,7 +35,7 @@ namespace NoorAirLine.Menus
                     break;
                 default:
                     Console.WriteLine("Invalid input ");
-                    break;;
+                    break;
             }
         }
         public void LogIn()
@@ -45,34 +45,29 @@ namespace NoorAirLine.Menus
             Console.WriteLine("Enter your password");
             string password = Console.ReadLine();
             var staff = staffRepo.GetStaff(email,password);
-            if (staff != null && staff.Email == email)
+            if (staff != null && staff.Email == email && staff.Password == password)
             {
-               Console.WriteLine("succesfully loged in");
-                locationRepo.CreateLocation();
+               Console.WriteLine("You have successfully logged in");
+               PrintSubMenu();
             }
-            else if(staff != null && staff.Role == Enums.Role.Admin)
-            {
-                PrintSubMenu();
-            }
-            
             else
             {
                 Console.WriteLine("YOU DO NOT HAVE AN ACCOUNT YET");
             }
         }
 
-        // public void Login()
-        // {
-        //     var loginSuccessful = staffRepo.LogIn();
-        //     if (loginSuccessful != null && loginSuccessful.Role == Role.Admin)
-        //     {
-        //         PrintSubMenu();
-        //     }
-        //     else if (loginSuccessful == null)
-        //     {
-        //         Console.WriteLine("Invalid username or password");
-        //     }
-        // }
+        public void Login()
+        {
+            var loginSuccessful = staffRepo.LogIn(Role.Admin);
+            if (loginSuccessful != null && loginSuccessful.Role == Role.Admin)
+            {
+                PrintSubMenu();
+            }
+            else if (loginSuccessful == null)
+            {
+                Console.WriteLine("Invalid username or password");
+            }
+        }
         public void PrintSubMenu()
         {
             Console.WriteLine("Enter 1 to add new staff. \n Enter 2 to add location \n Enter 3 to add flight");

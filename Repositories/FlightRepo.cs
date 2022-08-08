@@ -1,26 +1,24 @@
 using System;
 using NoorAirLine.Enums;
+using MySql.Data.MySqlClient;
 using NoorAirLine.Models;
 namespace NoorAirLine.Repositories
 {
     public class FlightRepo
     {
-        public static int myIndex = 1;
-        public static int count = 1;
-        public List<Flight> Flights = new List<Flight>();
-        public void SeedFlight(int id, decimal price, string takeOffPoint, string landingPoint, DateTime takeOffTime,
-         DateTime landingTime, DateTime takeOffDate, int availableNumberOfSeat)
+        public static List<Flight> Flights = new List<Flight>();
+        public static void SeedFlight()
         {
-            var flight1 = new Flight(id = 1, price = 20000, takeOffPoint = "Ibadan", landingPoint = "Lagos", takeOffTime = new DateTime(2008, 4, 10, 6, 30, 0), landingTime = new DateTime(2008, 4, 10, 7, 20, 0), takeOffDate = new DateTime(2008, 4, 10, 6, 30, 0), availableNumberOfSeat = 200);
-            var flight2 = new Flight(id = 2, price = 30000, takeOffPoint = "Kano", landingPoint = "Ibadan", takeOffTime = new DateTime(2008, 4, 10, 7, 00, 0), landingTime = new DateTime(2008, 4, 10, 8, 30, 0), takeOffDate = new DateTime(2008, 4, 10, 6, 30, 0), availableNumberOfSeat = 250);
-            var flight3 = new Flight(id = 3, price = 40000, takeOffPoint = "Abuja", landingPoint = "Lagos", takeOffTime = new DateTime(2008, 4, 10, 7, 30, 0), landingTime = new DateTime(2008, 4, 10, 8, 30, 0), takeOffDate = new DateTime(2008, 4, 10, 6, 30, 0), availableNumberOfSeat = 250);
-            var flight4 = new Flight(id = 4, price = 50000, takeOffPoint = "Lagos", landingPoint = "Kaduna", takeOffTime = new DateTime(2008, 4, 10, 8, 00, 0), landingTime = new DateTime(2008, 4, 10, 9, 30, 0), takeOffDate = new DateTime(2008, 4, 10, 6, 30, 0), availableNumberOfSeat = 350);
-            var flight5 = new Flight(id = 5, price = 60000, takeOffPoint = "Nassarawa", landingPoint = "Plateau", takeOffTime = new DateTime(2008, 4, 10, 8, 30, 0), landingTime = new DateTime(2008, 4, 10, 9, 15, 05), takeOffDate = new DateTime(2008, 4, 10, 6, 30, 0), availableNumberOfSeat = 200);
-            var flight6 = new Flight(id = 6, price = 20000, takeOffPoint = "Ibadan", landingPoint = "Lagos", takeOffTime = new DateTime(2008, 4, 10, 6, 30, 0), landingTime = new DateTime(2008, 4, 10, 7, 20, 0), takeOffDate = new DateTime(2008, 4, 10, 6, 30, 0), availableNumberOfSeat = 300);
-            var flight7 = new Flight(id = 7, price = 30000, takeOffPoint = "Kano", landingPoint = "Ibadan", takeOffTime = new DateTime(2008, 4, 10, 7, 00, 0), landingTime = new DateTime(2008, 4, 10, 8, 30, 0), takeOffDate = new DateTime(2008, 4, 10, 6, 30, 0), availableNumberOfSeat = 250);
-            var flight8 = new Flight(id = 8, price = 45000, takeOffPoint = "Abuja", landingPoint = "Lagos", takeOffTime = new DateTime(2008, 4, 10, 7, 30, 0), landingTime = new DateTime(2008, 4, 10, 8, 30, 0), takeOffDate = new DateTime(2008, 4, 10, 6, 30, 0), availableNumberOfSeat = 400);
-            var flight9 = new Flight(id = 9, price = 40000, takeOffPoint = "Lagos", landingPoint = "Kaduna", takeOffTime = new DateTime(2008, 4, 10, 8, 00, 0), landingTime = new DateTime(2008, 4, 10, 9, 30, 0), takeOffDate = new DateTime(2008, 4, 10, 6, 30, 0), availableNumberOfSeat = 300);
-            var flight10 = new Flight(id = 10, price = 50000, takeOffPoint = "Nassarawa", landingPoint = "Borno", takeOffTime = new DateTime(2008, 4, 10, 8, 30, 0), landingTime = new DateTime(2008, 4, 10, 8, 45, 0), takeOffDate = new DateTime(2008, 4, 10, 6, 30, 0), availableNumberOfSeat = 300);
+            var flight1 = new Flight(1, 20000, "Ibadan", 1, "Lagos", new DateTime(2008, 4, 10, 6, 30, 0), new DateTime(2008, 4, 10, 7, 20, 0), new DateTime(2008, 4, 10, 6, 30, 0), 200);
+            var flight2 = new Flight(2, 30000, "Kano", 2, "Ibadan", new DateTime(2008, 4, 10, 7, 00, 0), new DateTime(2008, 4, 10, 8, 30, 0), new DateTime(2008, 4, 10, 6, 30, 0), 250);
+            var flight3 = new Flight(3, 40000, "Abuja", 3, "Lagos", new DateTime(2008, 4, 10, 7, 30, 0), new DateTime(2008, 4, 10, 8, 30, 0), new DateTime(2008, 4, 10, 6, 30, 0), 250);
+            var flight4 = new Flight(4, 50000, "Lagos", 2, "Kaduna", new DateTime(2008, 4, 10, 8, 00, 0), new DateTime(2008, 4, 10, 9, 30, 0), new DateTime(2008, 4, 10, 6, 30, 0), 350);
+            var flight5 = new Flight(5, 60000, "Nassarawa", 4, "Plateau", new DateTime(2008, 4, 10, 8, 30, 0), new DateTime(2008, 4, 10, 9, 15, 05), new DateTime(2008, 4, 10, 6, 30, 0), 200);
+            var flight6 = new Flight(6, 20000, "Ibadan", 1, "Lagos", new DateTime(2008, 4, 10, 6, 30, 0), new DateTime(2008, 4, 10, 7, 20, 0), new DateTime(2008, 4, 10, 6, 30, 0), 300);
+            var flight7 = new Flight(7, 30000, "Kano", 2, "Ibadan", new DateTime(2008, 4, 10, 7, 00, 0), new DateTime(2008, 4, 10, 8, 30, 0), new DateTime(2008, 4, 10, 6, 30, 0), 250);
+            var flight8 = new Flight(8, 45000, "Abuja", 5, "Lagos", new DateTime(2008, 4, 10, 7, 30, 0), new DateTime(2008, 4, 10, 8, 30, 0), new DateTime(2008, 4, 10, 6, 30, 0), 400);
+            var flight9 = new Flight(9, 40000, "Lagos", 6, "Kaduna", new DateTime(2008, 4, 10, 8, 00, 0), new DateTime(2008, 4, 10, 9, 30, 0), new DateTime(2008, 4, 10, 6, 30, 0), 300);
+            var flight10 = new Flight(10, 50000, "Nassarawa", 4, "Borno", new DateTime(2008, 4, 10, 8, 30, 0), new DateTime(2008, 4, 10, 8, 45, 0), new DateTime(2008, 4, 10, 6, 30, 0), 300);
 
             Flights.Add(flight1);
             Flights.Add(flight2);
@@ -34,9 +32,6 @@ namespace NoorAirLine.Repositories
             Flights.Add(flight10);
 
             Console.WriteLine("Flights has been created successfully");
-            myIndex++;
-            count++;
-            GetAvailableFlighht(takeOffTime, landingPoint, takeOffPoint);
 
         }
         public void CreateFlight()
@@ -47,28 +42,31 @@ namespace NoorAirLine.Repositories
             string takeOffPoint = Console.ReadLine();
             System.Console.WriteLine("Enter Landing Point");
             string landingPoint = Console.ReadLine();
-             Console.WriteLine("Enter your Take-Off Time in this format:dd-mm-yyyy ");
+            Console.WriteLine("Enter your Take-Off Time in this format:dd-mm-yyyy ");
             DateTime takeOffTime;
-            while (!DateTime.TryParse(Console.ReadLine(), out takeOffTime)) ;
+            while (!DateTime.TryParse(Console.ReadLine(), out takeOffTime))
             {
                 Console.WriteLine("Invalid input");
             }
             Console.WriteLine("Enter your Landing Time in this format:dd-mm-yyyy ");
             DateTime landingTime;
-            while (!DateTime.TryParse(Console.ReadLine(), out landingTime)) ;
+            while (!DateTime.TryParse(Console.ReadLine(), out landingTime))
             {
                 Console.WriteLine("Invalid input");
             }
             Console.WriteLine("Enter your Take-Off Date in this format:dd-mm-yyyy ");
             DateTime takeOffDate;
-            while (!DateTime.TryParse(Console.ReadLine(), out takeOffDate)) ;
+
+            while (!DateTime.TryParse(Console.ReadLine(), out takeOffDate))
             {
                 Console.WriteLine("Invalid input");
-            } 
+            }
             Console.WriteLine("Enter Available Number Of Seats");
             int availableNumberOfSeat = int.Parse(Console.ReadLine());
-            int id = Flights.Count+1;
-            var flight = new Flight(id, price, takeOffPoint, landingPoint, takeOffTime,
+            Console.WriteLine("Enter the aircraft Id");
+            int airCraftId = int.Parse(Console.ReadLine());
+            int id = Flights.Count + 1;
+            var flight = new Flight(id, price, takeOffPoint, airCraftId, landingPoint, takeOffTime,
             landingTime, takeOffDate, availableNumberOfSeat);
             Flights.Add(flight);
             Console.WriteLine("Flights has been created successfully");
@@ -76,7 +74,7 @@ namespace NoorAirLine.Repositories
 
         public Flight EditFlight(int id)
         {
-            for (int i = 0; i < myIndex; i++)
+            for (int i = 0; i < Flights.Count; i++)
             {
                 if (Flights[i] != null && Flights[i].Id == id)
                 {
@@ -89,7 +87,7 @@ namespace NoorAirLine.Repositories
 
         public Flight DeleteFlight(int id)
         {
-            for (int i = 0; i < myIndex; i++)
+            for (int i = 0; i < Flights.Count; i++)
             {
                 if (Flights[i] != null && Flights[i].Id == id)
                 {
@@ -100,7 +98,7 @@ namespace NoorAirLine.Repositories
         }
         public List<Flight> GetAvailableFlights()
         {
-            for (int i = 0; i < myIndex; i++)
+            for (int i = 0; i < Flights.Count; i++)
             {
                 Flights.ToList();
             }
@@ -109,32 +107,46 @@ namespace NoorAirLine.Repositories
         public void PrintAllFlights()
         {
             var flights = GetAvailableFlights();
-            foreach(var flight in flights)
+            foreach (var flight in flights)
             {
                 var a = flight.Id;
-                        var b = flight.LandingPoint;
-                        var c = flight.LandingTime;
-                        var d = flight.Price;
-                        var e = flight.TakeOffDate;
-                        var f = flight.TakeOffPoint;
-                        var g = flight.TakeOffTime;
-                        var h = flight.AvailableNumberOfSeat;
+                var b = flight.LandingPoint;
+                var c = flight.LandingTime;
+                var d = flight.Price;
+                var e = flight.TakeOffDate;
+                var f = flight.TakeOffPoint;
+                var g = flight.TakeOffTime;
+                var h = flight.AvailableNumberOfSeat;
 
-                        Console.WriteLine($"Id ={a}\t LandingPoint ={b}\t LandingTime = {c}\t Price = {d}\t TakeOffDate ={e}\t TakeOffPoint ={f}\t TakeOffTime ={g}\t AvailableNumberOfSeat = {h}");
+                Console.WriteLine($"Id ={a}\t LandingPoint ={b}\t LandingTime = {c}\t Price = {d}\t TakeOffDate ={e}\t TakeOffPoint ={f}\t TakeOffTime ={g}\t AvailableNumberOfSeat = {h}");
             }
         }
 
-        public List<Flight> GetAvailableFlighht(DateTime takeOffTime, string landingPoint, string takeOffPoint)
+        public void Tet()
         {
-            for (int i = 0; i < myIndex; i++)
+            Console.WriteLine("Teting...");
+        }
+
+        public Flight GetAvailableFlighht(DateTime takeOffTime, string landingPoint, string takeOffPoint)
+        {
+            foreach (var flight in Flights)
             {
-                if (Flights[i] != null && Flights[i].TakeOffTime == takeOffTime)
+                if (flight.LandingPoint == landingPoint && flight.TakeOffPoint == takeOffPoint)
                 {
-                    if (Flights[i].LandingPoint == landingPoint && Flights[i].TakeOffPoint == takeOffPoint)
-                    {
-                        var allAvailableFlights = Flights.ToList();
-                        return allAvailableFlights;
-                    }
+                    return flight;
+                }
+            }
+            return null;
+
+        }
+        public Flight GetFlight(int id)
+        {
+            for (int i = 0; i < Flights.Count; i++)
+            {
+                if (Flights[i] != null && Flights[i].Id == id)
+                {
+                    return Flights[i];
+
                 }
             }
             return null;
